@@ -134,7 +134,7 @@ Struct().fields is a Proxy object allowing to access structure fields in a handy
  
 # added new functions by pleungkh
 ## setflFld(fieldName, txtStr, LenfieldName) function
-Resize field buffer to the txtStr text and keep the size value into LenfieldName.
+Resize field buffer to fit in txtStr and keep that size in LenfieldName.
 
 
   
