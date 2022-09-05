@@ -132,5 +132,9 @@ This is not true only for Struct() objects that are fields themselves, as they a
 ## fields property
 Struct().fields is a Proxy object allowing to access structure fields in a handy manner - as any other javascript object.
  
+# added new functions by pleungkh
+## setflFld(fieldName, txtStr, LenfieldName) function
+Resize field buffer to the txtStr text and keep the size value into LenfieldName.
+
 
   
