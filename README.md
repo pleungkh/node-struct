@@ -133,8 +133,8 @@ This is not true only for Struct() objects that are fields themselves, as they a
 Struct().fields is a Proxy object allowing to access structure fields in a handy manner - as any other javascript object.
  
 # added new functions by pleungkh
-## setflFld(fieldName, txtStr, LenfieldName) function
-Resize field buffer to fit in txtStr and keep that size in LenfieldName.
+##   refit(fldName,fldLen)  function
+Resize field buffer to fit text of fldName to fldLen.
 
 
   
