@@ -216,6 +216,7 @@ function Struct() {
         allocated : false,
         len : 0,
         fields : {},
+        original_backup: {fields : {}, closures : []},
         closures : []
     }, self = this;
     
@@ -366,7 +367,7 @@ function Struct() {
             priv.buf = new Buffer(priv.len);
             priv.buf.fill(0);
         }
-        allocateFields();
+        allocateFields(); 
         priv.allocated = true;
         return this;
     }
@@ -415,7 +416,31 @@ function Struct() {
     this.buffer = function () {
         return priv.buf;
     }
-    
+
+
+    this.refit = function(fldName,fldLen) {
+        
+        var lastFldSet = {};
+        var flag = false;
+        var theBuffer = {};
+        var nextOffset = 0;
+
+        for (var key in priv.fields) {
+             if (flag) {
+                priv.fields[key].offset =  lastFldSet.length + lastFldSet.offset;
+                lastFldSet = priv.fields[key];
+             }            
+             if (key == fldName) { 
+                flag = !flag;
+                lastFldSet = priv.fields[key]; 
+                theBuffer = priv.buf;
+
+                nextOffset = lastFldSet.offset + lastFldSet.length;
+                priv.buf = Buffer.concat([theBuffer.slice(0, lastFldSet.offset + fldLen), theBuffer.slice(nextOffset)]);
+                lastFldSet.length = fldLen
+             }  
+        }
+    }   
     
     function getFields() {
         var fields = {};
